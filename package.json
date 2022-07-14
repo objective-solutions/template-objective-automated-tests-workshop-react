@@ -1,5 +1,6 @@
 {
   "name": "template-objective-automated-tests-workshop-react",
+  "description": "boilerplate project for workshops",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
