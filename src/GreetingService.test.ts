@@ -13,12 +13,14 @@
 
 import { NOT_IMPLEMENTED_YET } from "./Messages"
 
+let sayHello = (name:string) => `Hello ${name ? name : "World"}!`
+
 describe("GreetingServiceTestSuite", () => {
   test("Given a name `Otavio` when execute sayHello method then it should return `Hello Otavio!`", () => {
-    throw new Error(NOT_IMPLEMENTED_YET)
+    expect(sayHello("Otavio")).toBe("Hello Otavio!")
   })
  
   test("Given an empty name `` when execute sayHello method then it should return `Hello World!`", () => {
-    throw new Error(NOT_IMPLEMENTED_YET)
+    expect(sayHello("")).toBe("Hello World!")
   }) 
 })
