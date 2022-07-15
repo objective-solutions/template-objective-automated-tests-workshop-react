@@ -13,24 +13,45 @@
 
 import { NOT_IMPLEMENTED_YET } from "./Messages"
 
+let isPrime = (number: number) => {
+  if (!Number.isInteger(number))
+    throw `${number} is not a natural number`
+
+  if (number < 1)
+    throw `${number} is not a prime number`
+
+  if (number === 1)
+    throw `${number} is neither prime nor composite number`
+
+  for(let i=2; i<number; i++)
+    if(number % i == 0)
+      return false
+
+  return true;
+}
 describe("PrimeNumbersTestSuite", () => {
-  test("Given a non prime number when execute isPrime method then it should return `false`", () => {
-    throw new Error(NOT_IMPLEMENTED_YET)
+
+  test.each([
+    {number:2, result: true},
+    {number:3, result: true},
+    {number:4, result: false},
+    {number:5, result: true},
+    {number:6, result: false},
+    {number:7, result: true},
+    {number:8, result: false},
+    {number:9, result: false},
+    {number:10, result: false},
+    {number:11, result: true}
+  ])("Given the number `$number` when execute isPrime method then it should return `$result`", ({number, result}) => {
+    expect(isPrime(number)).toBe(result)
   })
 
-  test("Given a prime number when execute isPrime method then it should return `true`", () => {
-    throw new Error(NOT_IMPLEMENTED_YET)
-  })
-
-  test("Given a non integer number when execute isPrime method then it should raise an exception", () => {
-    throw new Error(NOT_IMPLEMENTED_YET)
-  })
-
-  test("Given a number less then 1 when execute isPrime method then it should raise an exception", () => {
-    throw new Error(NOT_IMPLEMENTED_YET)
-  })
-
-  test("Given a number equal to 1 when execute isPrime method then it should raise an exception", () => {
-    throw new Error(NOT_IMPLEMENTED_YET)
+  test.each([
+    {number: 1.1, message: "1.1 is not a natural number"},
+    {number: 1, message: "1 is neither prime nor composite number"},
+    {number: 0, message: "0 is not a prime number"},
+    {number: -1, message: "-1 is not a prime number"}
+  ])("Given the number `$number` when execute isPrime method then it should raise an exception `$message`", ({number, message}) => {
+    expect(() => {isPrime(number)}).toThrow(message)
   })
 })
