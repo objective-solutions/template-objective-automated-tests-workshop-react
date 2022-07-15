@@ -11,16 +11,15 @@
  *
  */
 
-import { NOT_IMPLEMENTED_YET } from "./Messages"
-
-let sayHello = (name:string) => `Hello ${name ? name : "World"}!`
+import GreetingService from "./GreetingService"
 
 describe("GreetingServiceTestSuite", () => {
+  const service = new GreetingService()
   test("Given a name `Otavio` when execute sayHello method then it should return `Hello Otavio!`", () => {
-    expect(sayHello("Otavio")).toBe("Hello Otavio!")
+    expect(service.sayHello("Otavio")).toBe("Hello Otavio!")
   })
  
   test("Given an empty name `` when execute sayHello method then it should return `Hello World!`", () => {
-    expect(sayHello("")).toBe("Hello World!")
+    expect(service.sayHello("")).toBe("Hello World!")
   }) 
 })
